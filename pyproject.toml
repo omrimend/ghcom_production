@@ -1,0 +1,44 @@
+[project]
+name = "simple-uv-project"
+version = "0.1.0"
+description = "A simple UV project example"
+requires-python = "==3.8.20"
+dependencies = [
+    "requests>=2.31.0",
+    "click==8.1.7 ; python_version < '3.10'",
+    "click==8.1.7 ; python_version >= '3.10'",
+]
+
+
+[tool.uv.sources]
+click = [
+    { git = "https://github.com/pallets/click.git", tag = "8.1.7", marker = "python_version < '3.10'" },
+    { url = "https://files.pythonhosted.org/packages/00/2e/d53fa4befbf2cfa713304affc7ca780ce4fc1fd8710527771b58311a3229/click-8.1.7-py3-none-any.whl", marker = "python_version >= '3.10'" },
+]
+
+[project.optional-dependencies]
+# Data science extras - for working with data
+data = [
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+]
+# Web scraping extras - for scraping websites
+scraping = [
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.0.0",
+]
+# All extras combined
+all = [
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
+omri = [
+    "numpy>=1.24.0",
+]
